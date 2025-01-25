@@ -12,12 +12,27 @@ type CMSLinkType = {
   label?: string | null;
   newTab?: boolean | null;
   reference?: {
-    relationTo: 'category' | 'dishGroups' | string | number;
+    relationTo: 'categories' | 'dishGroups' | string | number;
     value: Category | DishGroup | string | number;
   } | null;
   size?: ButtonProps['size'] | null;
   type?: 'custom' | 'reference' | null;
   url?: string | null;
+};
+
+const generateHref = (
+  reference: CMSLinkType['reference'],
+  url: CMSLinkType['url'],
+  type: 'custom' | 'reference' | null | undefined,
+) => {
+  if (type === 'reference' && typeof reference?.value === 'object' && reference.value.id) {
+    const isCategoryAndGroups =
+      reference?.relationTo === 'categories' || reference?.relationTo === 'dishGroups';
+
+    return `/${isCategoryAndGroups ? reference?.relationTo : ''}#${reference.value.name}`;
+  }
+
+  return url;
 };
 
 export const CMSLink: React.FC<CMSLinkType> = (props) => {
@@ -33,13 +48,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     url,
   } = props;
 
-  const href =
-    type === 'reference' && typeof reference?.value === 'object' && reference.value.id
-      ? `${reference?.relationTo !== 'category' ? `/${reference?.relationTo}` : ''}/${
-          reference.value.id
-        }`
-      : url;
-
+  const href = generateHref(reference, url, type);
   if (!href) return null;
 
   const size = appearance === 'link' ? 'clear' : sizeFromProps;
