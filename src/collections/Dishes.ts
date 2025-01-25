@@ -1,3 +1,4 @@
+import { slugField } from '@/fields/slug';
 import type { CollectionConfig } from 'payload';
 
 const Dishes: CollectionConfig = {
@@ -7,6 +8,10 @@ const Dishes: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
+  },
+  defaultPopulate: {
+    name: true,
+    slug: true,
   },
   fields: [
     {
@@ -37,6 +42,7 @@ const Dishes: CollectionConfig = {
       required: true,
       hasMany: true,
     },
+    ...slugField(),
   ],
 };
 

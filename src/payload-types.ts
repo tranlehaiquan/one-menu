@@ -129,6 +129,8 @@ export interface Dish {
   description: string;
   image?: (string | null) | Media;
   category: (string | Category)[];
+  slug?: string | null;
+  slugLock?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -140,6 +142,8 @@ export interface DishGroup {
   id: string;
   name: string;
   dishes?: (string | Dish)[] | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -273,6 +277,8 @@ export interface DishesSelect<T extends boolean = true> {
   description?: T;
   image?: T;
   category?: T;
+  slug?: T;
+  slugLock?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -283,6 +289,8 @@ export interface DishesSelect<T extends boolean = true> {
 export interface DishGroupsSelect<T extends boolean = true> {
   name?: T;
   dishes?: T;
+  slug?: T;
+  slugLock?: T;
   updatedAt?: T;
   createdAt?: T;
 }

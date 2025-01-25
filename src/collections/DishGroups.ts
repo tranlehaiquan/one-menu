@@ -1,9 +1,14 @@
+import { slugField } from '@/fields/slug';
 import type { CollectionConfig } from 'payload';
 
 const DishGroups: CollectionConfig = {
   slug: 'dishGroups',
   admin: {
     useAsTitle: 'name',
+  },
+  defaultPopulate: {
+    name: true,
+    slug: true,
   },
   access: {
     read: () => true,
@@ -20,6 +25,7 @@ const DishGroups: CollectionConfig = {
       relationTo: 'dishes',
       hasMany: true,
     },
+    ...slugField(),
   ],
 };
 

@@ -34,7 +34,6 @@ const RestaurantMenu = async () => {
     <div className="flex w-full mx-auto bg-white rounded-lg shadow-lg overflow-hidden h-screen">
       <AppSideBar />
 
-      {/* Menu content */}
       <div className="flex-grow">
         <div className="flex w-full flex-col">
           <ScrollArea className="h-screen px-4">
@@ -45,7 +44,7 @@ const RestaurantMenu = async () => {
                   {category.items.map((item, itemIndex) => (
                     <div key={item.name} className="mb-4">
                       <div className="flex justify-between items-baseline">
-                        <Link href={`/dish/${item.id}`} className="text-lg font-medium">
+                        <Link href={`/dish/${item.slug}`} className="text-lg font-medium">
                           {item.name}
                         </Link>
                         <span className="text-sm font-bold">${item.price.toFixed(2)}</span>
