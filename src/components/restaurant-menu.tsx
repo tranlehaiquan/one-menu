@@ -20,6 +20,8 @@ const RestaurantMenu = () => {
 
   const groupedDishes = groupDishesByCategory(dishes.docs, categories.docs);
 
+  console.log(groupedDishes);
+
   return (
     <div className="flex w-full mx-auto bg-white rounded-lg shadow-lg overflow-hidden h-screen">
       <AppSideBar />

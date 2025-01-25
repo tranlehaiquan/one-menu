@@ -1,5 +1,5 @@
 import { queryOptions } from '@tanstack/react-query';
-import { getCategories, getDished } from './serverActions';
+import { getCategories, getDished } from '@/services';
 
 export const getCategoriesQuery = queryOptions({
   queryKey: ['categories'],

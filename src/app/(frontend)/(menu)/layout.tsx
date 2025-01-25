@@ -3,7 +3,7 @@ import { getCategoriesQuery, getDishesQuery } from '@/fetchQuery/queryOptions';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import React from 'react';
 
-const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
+const Layout: React.FC<React.PropsWithChildren> = async ({ children }) => {
   const queryClient = getQueryClient();
 
   void queryClient.prefetchQuery(getCategoriesQuery);
