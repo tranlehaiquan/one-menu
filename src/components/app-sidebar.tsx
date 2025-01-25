@@ -1,17 +1,11 @@
-import { getPayloadFromConfig } from '@/lib/getPayloadFromConfig';
+'use client';
+import { getCategoriesQuery } from '@/fetchQuery/queryOptions';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import React from 'react';
 
-interface Props {
-  className?: string;
-}
-
-const AppSideBar: React.FC<Props> = async (props) => {
-  const payload = await getPayloadFromConfig();
-  const categories = await payload.find({
-    collection: 'categories',
-    depth: 0,
-  });
+const AppSideBar = () => {
+  const { data: categories } = useSuspenseQuery(getCategoriesQuery);
 
   return (
     <div className={`bg-gray-100 transition-all duration-300 ease-in-out w-64`}>

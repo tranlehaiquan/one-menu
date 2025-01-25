@@ -1,12 +1,11 @@
+'use client';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
-import { getPayloadFromConfig } from '@/lib/getPayloadFromConfig';
 import { Category, Dish } from '@/payload-types';
-import AppSideBar from './app-sidebar';
 import Link from 'next/link';
-import { getCachedGlobal } from '@/utilities/getGlobals';
-// import { Button } from '@/components/ui/button';
-// import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { getCategoriesQuery, getDishesQuery } from '@/fetchQuery/queryOptions';
+import AppSideBar from './app-sidebar';
 
 const groupDishesByCategory = (dishes: Dish[], categories: Category[]) => {
   return categories.map((category) => {
@@ -15,18 +14,9 @@ const groupDishesByCategory = (dishes: Dish[], categories: Category[]) => {
   });
 };
 
-const RestaurantMenu = async () => {
-  const payload = await getPayloadFromConfig();
-  const categories = await payload.find({
-    collection: 'categories',
-    depth: 0,
-  });
-
-  const dishes = await payload.find({
-    collection: 'dishes',
-    limit: 100,
-    depth: 0,
-  });
+const RestaurantMenu = () => {
+  const { data: categories } = useSuspenseQuery(getCategoriesQuery);
+  const { data: dishes } = useSuspenseQuery(getDishesQuery);
 
   const groupedDishes = groupDishesByCategory(dishes.docs, categories.docs);
 

@@ -3,13 +3,10 @@ import Link from 'next/link';
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 
-const Page = async ({
-  params,
-}: {
-  params: {
-    slug: string;
-  };
-}) => {
+const Page = async ({ params }) => {
+  // asynchronous access of `params.id`.
+  const { slug } = await params;
+
   return (
     <div className="p-4">
       <Button variant={'link'}>
@@ -17,7 +14,7 @@ const Page = async ({
         <Link href="/">Back to Home</Link>
       </Button>
 
-      <div>{params.slug}</div>
+      <div>{slug}</div>
     </div>
   );
 };
