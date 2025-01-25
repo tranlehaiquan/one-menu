@@ -1,13 +1,18 @@
+import { Toaster } from '@/components/ui/sonner';
 import './global.css';
+import Providers from '@/components/Providers';
 
 const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <html>
       <head>
-        <title>My App</title>
+        <title>One Menu</title>
         <link rel="stylesheet" href="/styles.css" />
       </head>
-      <body className="bg-amber-100">{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+        <Toaster />
+      </body>
     </html>
   );
 };

@@ -1,16 +1,8 @@
-import { Button } from '@/components/ui/button';
+import RestaurantMenu from '@/components/restaurant-menu';
 import React from 'react';
 
-interface Props {
-  className?: string;
-}
-
-const Page: React.FC<Props> = (props) => {
-  return (
-    <div>
-      <Button>click me</Button>
-    </div>
-  );
+const Page = async () => {
+  return <RestaurantMenu />;
 };
 
 export default Page;
