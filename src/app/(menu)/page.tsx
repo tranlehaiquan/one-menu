@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import React from 'react';
 
 interface Props {
@@ -5,7 +6,11 @@ interface Props {
 }
 
 const Page: React.FC<Props> = (props) => {
-  return <div>Page</div>;
+  return (
+    <div>
+      <Button>click me</Button>
+    </div>
+  );
 };
 
 export default Page;
