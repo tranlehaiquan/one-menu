@@ -1,7 +1,7 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { getPayloadFromConfig } from '@/lib/getPayloadFromConfig';
-import { Category, Dish, Header } from '@/payload-types';
+import { Category, Dish } from '@/payload-types';
 import AppSideBar from './app-sidebar';
 import Link from 'next/link';
 import { getCachedGlobal } from '@/utilities/getGlobals';
@@ -17,7 +17,6 @@ const groupDishesByCategory = (dishes: Dish[], categories: Category[]) => {
 
 const RestaurantMenu = async () => {
   const payload = await getPayloadFromConfig();
-  const headerData: Header = await getCachedGlobal('header', 1)();
   const categories = await payload.find({
     collection: 'categories',
     depth: 0,

@@ -13,7 +13,6 @@ import { Media } from './collections/Media';
 import Categories from './collections/Categories';
 import Dishes from './collections/Dishes';
 import DishGroups from './collections/DishGroups';
-import { Header } from './Header/config';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -42,5 +41,5 @@ export default buildConfig({
     }),
     // storage-adapter-placeholder
   ],
-  globals: [Header],
+  globals: [],
 });
