@@ -3,8 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 
-const Page = async ({ params }) => {
-  // asynchronous access of `params.id`.
+const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
 
   return (
